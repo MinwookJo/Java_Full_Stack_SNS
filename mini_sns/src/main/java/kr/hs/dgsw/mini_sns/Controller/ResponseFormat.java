@@ -10,13 +10,13 @@ public class ResponseFormat {
     private int code=0;
     private String description;
     private List<BoardDomain> boardDoaminList;
-    private List<UserDomain> userDomainList;
+    private UserDomain userDomain;
 
     public ResponseFormat(){
         this.code=0;
         this.description="success";
         this.boardDoaminList = new ArrayList<>();
-        this.userDomainList = new ArrayList<>();
+        this.userDomain = new UserDomain();
     }
 
     public int getCode() {
@@ -43,11 +43,15 @@ public class ResponseFormat {
         this.boardDoaminList = boardDoaminList;
     }
 
-    public List<UserDomain> getUserDomainList() {
-        return userDomainList;
+    public void setBoardDoaminList(BoardDomain boardDomain) {
+        this.boardDoaminList.add(boardDomain);
     }
 
-    public void setUserDomainList(List<UserDomain> userDomainList) {
-        this.userDomainList = userDomainList;
+    public UserDomain getUserDomain() {
+        return userDomain;
+    }
+
+    public void setUserDomain(UserDomain userDomain) {
+        this.userDomain = userDomain;
     }
 }

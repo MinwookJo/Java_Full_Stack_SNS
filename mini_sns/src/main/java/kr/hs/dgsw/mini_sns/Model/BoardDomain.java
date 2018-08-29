@@ -4,7 +4,7 @@ public class BoardDomain {
     public int idx;
     public String title;
     public String content;
-    public UserDomain snsUser;
+    public int userIdx;
 
     public int getIdx() {
         return idx;
@@ -30,11 +30,11 @@ public class BoardDomain {
         this.content = content;
     }
 
-    public UserDomain getSnsUser() {
-        return snsUser;
+    public int getSnsUser() {
+        return userIdx;
     }
 
-    public void setSnsUser(UserDomain snsUser) {
-        this.snsUser = snsUser;
+    public void setSnsUser(int userIdx) {
+        this.userIdx = userIdx;
     }
 }

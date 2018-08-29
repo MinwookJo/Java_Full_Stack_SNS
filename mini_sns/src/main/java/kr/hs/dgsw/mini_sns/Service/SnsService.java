@@ -1,19 +1,21 @@
 package kr.hs.dgsw.mini_sns.Service;
 
+import kr.hs.dgsw.mini_sns.Controller.ResponseFormat;
 import kr.hs.dgsw.mini_sns.Model.BoardDomain;
 import kr.hs.dgsw.mini_sns.Model.UserDomain;
 
 public interface SnsService {
-    public UserDomain viewUser(UserDomain userDomain);
-    public int insertUser(UserDomain user);
-    public int updateUser(UserDomain user);
-    public int deleteUser(int idx);
+    public ResponseFormat viewUser(int idx);
+    public ResponseFormat insertUser(UserDomain user);
+    public ResponseFormat updateUser(UserDomain user);
+    public ResponseFormat deleteUser(int idx);
 
-    public BoardDomain viewBoard(BoardDomain boardDomain);
-    public int writeBoard(BoardDomain boardDomain);
-    public int updateBoard(BoardDomain boardDomain);
-    public int delteBoard(int idx);
+    public ResponseFormat viewList();
+    public ResponseFormat viewBoard(int idx);
+    public ResponseFormat writeBoard(BoardDomain boardDomain);
+    public ResponseFormat updateBoard(BoardDomain boardDomain);
+    public ResponseFormat deleteBoard(int idx);
 
-    public int like(UserDomain userDomain,BoardDomain boardDomain);
+    public ResponseFormat like(UserDomain userDomain,BoardDomain boardDomain);
 
 }
