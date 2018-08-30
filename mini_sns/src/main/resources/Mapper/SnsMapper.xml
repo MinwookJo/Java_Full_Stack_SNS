@@ -5,20 +5,56 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.hs.dgsw.mini_sns.Model.SnsMapper">
 
+    <!--- board -->
     <select id="viewList" resultType="hashmap">
-        select * from sns.sns_board
+        SELECT sns_board.idx,title,content,userName FROM sns.sns_board
+        INNER JOIN sns.sns_user
+        WHERE  sns_board.userIdx = sns_user.idx;
     </select>
 
     <select id="viewBoard" parameterType="Integer" resultType="kr.hs.dgsw.mini_sns.Model.BoardDomain">
-        select * from sns.sns_board where idx=#{idx}
-        select sns.sns_board.*, sns.sns_user.userName
-        from sns.sns_board inner join sns.sns_user WHERE sns.sns_board.userIdx= sns.sns_user.idx
+        select * from sns.sns_board
+        where idx=#{idx};
     </select>
 
     <insert id="writeBoard" parameterType="kr.hs.dgsw.mini_sns.Model.BoardDomain">
         insert into sns.sns_board(idx,title,content,userIdx)
         values(#{idx},#{title},#{content},#{userIdx})
     </insert>
+
+    <update id="updateBoard" parameterType="kr.hs.dgsw.mini_sns.Model.BoardDomain">
+        update sns.sns_board
+        set title=#{title},content=#{content}
+        where idx=#{idx}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from sns.sns_board where idx=#{idx}
+    </delete>
+
+    <!--- like -->
+    <select id="viewLikeCount" parameterType="Integer" resultType="Integer">
+        SELECT count(sns.sns_like.userIdx)
+        FROM sns.sns_like,sns.sns_board,sns.sns_user
+        WHERE sns_board.idx=#{idx}
+         AND sns_like.userIdx = sns_user.idx
+         AND sns_board.idx = sns_like.boardIdx
+    </select>
+
+    <insert id="like" parameterType="kr.hs.dgsw.mini_sns.Model.LikeDomain">
+        insert into sns.sns_like(userIdx, boardIdx)
+        values(#{userIdx},#{boardIdx})
+    </insert>
+
+    <select id="getLike" parameterType="LikeDomain" resultType="LikeDomain">
+        SELECT count(sns.sns_like.userIdx)
+        FROM sns.sns_like,sns.sns_board,sns.sns_user
+        WHERE sns_board.idx=#{idx}
+        AND sns_like.userIdx = sns_user.idx
+        AND sns_board.idx = sns_like.boardIdx
+    </select>
+
+    <!--- user -->
 
     <select id="viewUser" parameterType="Integer" resultType="kr.hs.dgsw.mini_sns.Model.UserDomain">
         select * from sns.sns_user
@@ -29,5 +65,10 @@
         insert into sns.sns_user(idx,userName,id,pwd)
         values(#{idx},#{userName},#{id},#{pwd})
     </insert>
+
+    <select id="login" parameterType="kr.hs.dgsw.mini_sns.Model.UserDomain" resultType="kr.hs.dgsw.mini_sns.Model.UserDomain">
+        select * from sns.sns_user
+        where id=#{id} AND pwd=#{pwd};
+    </select>
 
 </mapper>

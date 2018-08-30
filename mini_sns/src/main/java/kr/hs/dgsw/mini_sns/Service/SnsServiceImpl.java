@@ -2,6 +2,7 @@ package kr.hs.dgsw.mini_sns.Service;
 
 import kr.hs.dgsw.mini_sns.Controller.ResponseFormat;
 import kr.hs.dgsw.mini_sns.Model.BoardDomain;
+import kr.hs.dgsw.mini_sns.Model.LikeDomain;
 import kr.hs.dgsw.mini_sns.Model.SnsMapper;
 import kr.hs.dgsw.mini_sns.Model.UserDomain;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SnsServiceImpl implements SnsService{
             rf.setCode(101);
             rf.setDescription("Fail to get user");
         }else {
-            rf.setUserDomain(userDomain);
+            rf.setResultList(userDomain);
         }
         return rf;
     }
@@ -39,13 +40,16 @@ public class SnsServiceImpl implements SnsService{
     }
 
     @Override
-    public ResponseFormat updateUser(UserDomain user) {
-        return null;
-    }
-
-    @Override
-    public ResponseFormat deleteUser(int idx) {
-        return null;
+    public ResponseFormat login(UserDomain user) {
+        ResponseFormat rf = new ResponseFormat();
+        UserDomain userDomain = snsMapper.login(user);
+        if(userDomain==null){
+            rf.setCode(101);
+            rf.setDescription("Fail to get user");
+        }else {
+            rf.setResultList(userDomain);
+        }
+        return rf;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class SnsServiceImpl implements SnsService{
             rf.setCode(103);
             rf.setDescription("Fail to get Board List");
         }else {
-            rf.setBoardDoaminList(boardDomainList);
+            rf.setResultList(boardDomainList);
         }
         return rf;
     }
@@ -65,11 +69,12 @@ public class SnsServiceImpl implements SnsService{
     public ResponseFormat viewBoard(int idx) {
         ResponseFormat rf = new ResponseFormat();
         BoardDomain boardDomain = snsMapper.viewBoard(idx);
+
         if(boardDomain==null){
             rf.setCode(104);
             rf.setDescription("Fail to get Board");
         }else {
-            rf.setBoardDoaminList(boardDomain);
+            rf.setResultList(boardDomain);
         }
         return rf;
     }
@@ -86,17 +91,55 @@ public class SnsServiceImpl implements SnsService{
     }
 
     @Override
-    public ResponseFormat updateBoard(BoardDomain boardDomain) {
-        return null;
+    public ResponseFormat updateBoard(BoardDomain boardDomain,int userIdx) {
+        ResponseFormat rf = new ResponseFormat();
+        int num_affected = 0;
+
+        System.out.print("결과"+userIdx+"AND"+boardDomain.userIdx);
+        if(boardDomain.userIdx==userIdx){
+            num_affected = snsMapper.updateBoard(boardDomain);
+        }
+
+        if(num_affected == 0){
+            rf.setCode(106);
+            rf.setDescription("Fail to update Board");
+        }
+        return rf;
     }
 
     @Override
     public ResponseFormat deleteBoard(int idx) {
-        return null;
+        ResponseFormat rf = new ResponseFormat();
+        int num_affected = snsMapper.deleteBoard(idx);
+        if(num_affected == 0){
+            rf.setCode(107);
+            rf.setDescription("Fail to delete Board");
+        }
+        return rf;
     }
 
     @Override
-    public ResponseFormat like(UserDomain userDomain, BoardDomain boardDomain) {
-        return null;
+    public ResponseFormat like(LikeDomain likeDomain) {
+        ResponseFormat rf = new ResponseFormat();
+        int num_affected = snsMapper.like(likeDomain);
+        if(num_affected == 0) {
+            rf.setCode(108);
+            rf.setDescription("Fail to like");
+        }
+        return rf;
+    }
+
+    @Override
+    public ResponseFormat viewLikeCount(int idx) {
+        ResponseFormat rf = new ResponseFormat();
+        int count = -1;
+        count = snsMapper.viewLikeCount(idx);
+        if(count==-1){
+            rf.setCode(110);
+            rf.setDescription("Fail to view like count");
+        }else {
+            rf.setResultList(count);
+        }
+        return rf;
     }
 }

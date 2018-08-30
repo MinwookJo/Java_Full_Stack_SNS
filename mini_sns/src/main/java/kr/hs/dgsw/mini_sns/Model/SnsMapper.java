@@ -9,6 +9,7 @@ import java.util.List;
 public interface SnsMapper {
     public UserDomain viewUser(@Param("idx")int idx);
     public int insertUser(UserDomain user);
+    public UserDomain login(UserDomain user);
 
     public List<BoardDomain> viewList();
     public BoardDomain viewBoard(@Param("idx")int idx);
@@ -16,5 +17,7 @@ public interface SnsMapper {
     public int updateBoard(BoardDomain boardDomain);
     public int deleteBoard(@Param("idx")int idx);
 
-    public int like(UserDomain userDomain,BoardDomain boardDomain);
+    public int like(LikeDomain likeDomain);
+    public int viewLikeCount(@Param("idx")int idx);
 }
+

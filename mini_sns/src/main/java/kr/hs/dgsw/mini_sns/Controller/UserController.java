@@ -21,4 +21,7 @@ public class UserController {
         return userService.insertUser(userDomain);
     }
 
+    @PostMapping("/login")
+    public ResponseFormat login (@RequestBody UserDomain userDomain){ return userService.login(userDomain); }
+
 }

@@ -6,17 +6,15 @@ import kr.hs.dgsw.mini_sns.Model.UserDomain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResponseFormat {
+public class ResponseFormat<T> {
     private int code=0;
     private String description;
-    private List<BoardDomain> boardDoaminList;
-    private UserDomain userDomain;
+    private List<T> resultList;
 
     public ResponseFormat(){
         this.code=0;
         this.description="success";
-        this.boardDoaminList = new ArrayList<>();
-        this.userDomain = new UserDomain();
+        this.resultList = new ArrayList<>();
     }
 
     public int getCode() {
@@ -35,23 +33,15 @@ public class ResponseFormat {
         this.description = description;
     }
 
-    public List<BoardDomain> getBoardDoaminList() {
-        return boardDoaminList;
+    public List<T> getResultList() {
+        return resultList;
     }
 
-    public void setBoardDoaminList(List<BoardDomain> boardDoaminList) {
-        this.boardDoaminList = boardDoaminList;
+    public void setResultList(List<T> resultList) {
+        this.resultList = resultList;
     }
 
-    public void setBoardDoaminList(BoardDomain boardDomain) {
-        this.boardDoaminList.add(boardDomain);
-    }
-
-    public UserDomain getUserDomain() {
-        return userDomain;
-    }
-
-    public void setUserDomain(UserDomain userDomain) {
-        this.userDomain = userDomain;
+    public void setResultList(T t){
+        this.resultList.add(t);
     }
 }

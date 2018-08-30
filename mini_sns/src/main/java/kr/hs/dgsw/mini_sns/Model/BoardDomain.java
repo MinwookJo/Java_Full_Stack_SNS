@@ -30,11 +30,11 @@ public class BoardDomain {
         this.content = content;
     }
 
-    public int getSnsUser() {
+    public int getUserIdx() {
         return userIdx;
     }
 
-    public void setSnsUser(int userIdx) {
+    public void setUserIdx(int userIdx) {
         this.userIdx = userIdx;
     }
 }
