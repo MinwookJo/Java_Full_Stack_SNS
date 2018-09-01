@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         apiService = RetrofitClient.getApiService();
     }
 
-
     //클릭시 함수들
     public void clickLoginBtn(View view){
         userDomain.setId(binding.idEdit.getText().toString());
@@ -54,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     if (response.body().getDescription().equals(ApiMessage.SUCCESS_MESSAGE)){
+                        //성공시
                         Toast.makeText(LoginActivity.this, response.body().getResultList().get(0).userName+"님 반갑습니다", Toast.LENGTH_SHORT).show();
                         USER_IDX.USER_IDX = response.body().getResultList().get(0).getIdx();
                         Intent intent=new Intent(LoginActivity.this,ListActivity.class);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import dgsw.hs.kr.snsapplication.network.RetroModel.UserDomain;
 //사용자 로그인, 회원가입 관련 응답모델
-public class UserResponse implements Response {
+public class UserResponse {
     private int code=0;
     private String description;
     private List<UserDomain> resultList;

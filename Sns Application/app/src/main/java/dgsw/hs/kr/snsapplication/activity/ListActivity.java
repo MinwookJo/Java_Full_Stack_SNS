@@ -1,11 +1,13 @@
 package dgsw.hs.kr.snsapplication.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -39,6 +41,19 @@ public class ListActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Items.clear();
+        setRecyclerView();
+    }
+
+    //버튼 클릭 함수
+    public void clickWriteBtn(View view){
+        Intent intent = new Intent(ListActivity.this, WriteAndUpdateActivity.class);
+        intent.putExtra("purpose","write");
+        startActivity(intent);
+    }
     //리사이클러뷰 세팅
     private void setRecyclerView(){
         binding.recyclerVIew.setHasFixedSize(true);
@@ -55,6 +70,7 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
                 if(response.isSuccessful()){
                     if (response.body().getDescription().equals(ApiMessage.SUCCESS_MESSAGE)){
+                        //성공시
                         for(int i=0; i<response.body().getResultList().size();i++){
                             Log.d("LISTTAG",""+response.body().getResultList().get(i));
                             Items.add(response.body().getResultList().get(i));

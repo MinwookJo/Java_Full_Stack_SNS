@@ -28,9 +28,9 @@ public class BoardController {
         return boardService.writeBoard(boardDomain);
     }
 
-    @PutMapping("/{userIdx}")
-    public ResponseFormat update(@RequestBody BoardDomain boardDomain, @PathVariable("userIdx")int userIdx){
-        return boardService.updateBoard(boardDomain,userIdx);
+    @PutMapping
+    public ResponseFormat update(@RequestBody BoardDomain boardDomain){
+        return boardService.updateBoard(boardDomain);
     }
 
     @DeleteMapping("/{idx}")

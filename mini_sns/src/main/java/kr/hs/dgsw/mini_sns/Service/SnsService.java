@@ -13,7 +13,7 @@ public interface SnsService {
     public ResponseFormat viewList();
     public ResponseFormat viewBoard(int idx);
     public ResponseFormat writeBoard(BoardDomain boardDomain);
-    public ResponseFormat updateBoard(BoardDomain boardDomain,int idx);
+    public ResponseFormat updateBoard(BoardDomain boardDomain);
     public ResponseFormat deleteBoard(int idx);
 
     public ResponseFormat like(LikeDomain likeDomain);

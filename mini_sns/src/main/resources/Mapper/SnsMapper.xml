@@ -28,7 +28,7 @@
         where idx=#{idx}
     </update>
 
-    <delete id="delete" parameterType="Integer">
+    <delete id="deleteBoard" parameterType="Integer">
         delete from sns.sns_board where idx=#{idx}
     </delete>
 

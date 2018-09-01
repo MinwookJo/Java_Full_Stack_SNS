@@ -35,7 +35,9 @@
             android:text="글쓰기"
             android:textColor="@android:color/background_light"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="clickWriteBtn"
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
     <LinearLayout

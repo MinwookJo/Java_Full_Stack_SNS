@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.WriteAndUpdateActivity"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@android:color/holo_blue_dark">
+
+            <TextView
+                android:id="@+id/DUTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="Change Board"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/DUOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="확인"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:onClick="clickDoneBtn"
+                style="?android:attr/borderlessButtonStyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/DUTitleEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="제목 입력"
+                android:inputType="textPersonName"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/DUContentEdit"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="내용 입력"
+                android:inputType="textPersonName"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

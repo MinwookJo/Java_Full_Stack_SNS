@@ -91,13 +91,10 @@ public class SnsServiceImpl implements SnsService{
     }
 
     @Override
-    public ResponseFormat updateBoard(BoardDomain boardDomain,int userIdx) {
+    public ResponseFormat updateBoard(BoardDomain boardDomain) {
         ResponseFormat rf = new ResponseFormat();
-        int num_affected = 0;
 
-        if(boardDomain.userIdx==userIdx){
-            num_affected = snsMapper.updateBoard(boardDomain);
-        }
+        int num_affected = snsMapper.updateBoard(boardDomain);
 
         if(num_affected == 0){
             rf.setCode(106);

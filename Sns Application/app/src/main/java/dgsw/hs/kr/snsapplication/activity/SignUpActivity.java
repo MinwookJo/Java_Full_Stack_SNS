@@ -59,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     if (response.body().getDescription().equals(ApiMessage.SUCCESS_MESSAGE)){
+                        //성공시
                         Toast.makeText(SignUpActivity.this, "회원가입성공", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
                         startActivity(intent);
