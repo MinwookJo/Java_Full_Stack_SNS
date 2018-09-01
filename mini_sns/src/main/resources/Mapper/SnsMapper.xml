@@ -18,8 +18,8 @@
     </select>
 
     <insert id="writeBoard" parameterType="kr.hs.dgsw.mini_sns.Model.BoardDomain">
-        insert into sns.sns_board(idx,title,content,userIdx)
-        values(#{idx},#{title},#{content},#{userIdx})
+        insert into sns.sns_board(title,content,userIdx)
+        values(#{title},#{content},#{userIdx})
     </insert>
 
     <update id="updateBoard" parameterType="kr.hs.dgsw.mini_sns.Model.BoardDomain">
@@ -52,6 +52,7 @@
         WHERE sns_board.idx=#{idx}
         AND sns_like.userIdx = sns_user.idx
         AND sns_board.idx = sns_like.boardIdx
+
     </select>
 
     <!--- user -->
@@ -62,8 +63,8 @@
     </select>
 
     <insert id="insertUser" parameterType="kr.hs.dgsw.mini_sns.Model.UserDomain">
-        insert into sns.sns_user(idx,userName,id,pwd)
-        values(#{idx},#{userName},#{id},#{pwd})
+        insert into sns.sns_user(userName,id,pwd)
+        values(#{userName},#{id},#{pwd})
     </insert>
 
     <select id="login" parameterType="kr.hs.dgsw.mini_sns.Model.UserDomain" resultType="kr.hs.dgsw.mini_sns.Model.UserDomain">

@@ -95,7 +95,6 @@ public class SnsServiceImpl implements SnsService{
         ResponseFormat rf = new ResponseFormat();
         int num_affected = 0;
 
-        System.out.print("결과"+userIdx+"AND"+boardDomain.userIdx);
         if(boardDomain.userIdx==userIdx){
             num_affected = snsMapper.updateBoard(boardDomain);
         }
